@@ -1,5 +1,6 @@
 package dataStructureWithJava;
 
+import java.util.Iterator;
 
 public class ArrayList<E> implements List<E>{
 	private int size;
@@ -9,7 +10,6 @@ public class ArrayList<E> implements List<E>{
 		this.size = 0;
 		resize();
 	}
-	
 	private void resize() {
 		if(size == 0 ) {
 			data = (E[]) new Object[10]; // 제네릭타입으로 배열을 만드는 방법 : object타입으로 배열을 만들고 형변환해줌
@@ -20,7 +20,6 @@ public class ArrayList<E> implements List<E>{
 			data = newData; // copy한 새 배열로 현재 배열 교체!
 		}
 	}
-
 	@Override
 	public void add(E element) {
 		// TODO Auto-generated method stub
@@ -30,7 +29,6 @@ public class ArrayList<E> implements List<E>{
 		
 		data[size++] = element;
 	}
-
 	@Override
 	public void add(int index, E element) {
 		// TODO Auto-generated method stub
@@ -56,18 +54,12 @@ public class ArrayList<E> implements List<E>{
 		
 		size++;
 	}
-
 	@Override
 	public E get(int index) {
 		// TODO Auto-generated method stub
 		checkBoundExclusive(index);
 		return data[index];	
 	}
-	
-	public void exceptionMethod() throws IndexOutOfBoundsException{
-		
-	}
-
 	@Override
 	public E remove(int index) {
 		// TODO Auto-generated method stub
@@ -87,29 +79,56 @@ public class ArrayList<E> implements List<E>{
 		
 		return r;
 	}
-
 	@Override
 	public void removeAll() {
 		// TODO Auto-generated method stub
 		size = 0;
 		// 데이터는 안지워주나? => 기존의 데이터값을 쓰레기값으로 여기고 size를 0으로하면 데이터를 굳이 안지워도댐
 	}
-
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return size;
 	}
-	
 	private void checkBoundExclusive(int index) { // 경계값 포함O
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Index: "+index+", Size: "+size);
 		}
 	}
-	
 	private void checkBoundInclusive(int index) { // 경계값 포함X
 		if(index < 0 || index > size) {
 			throw new IndexOutOfBoundsException("Index: "+index+", Size: "+ size);
 		}
+	}
+
+	@Override
+	public Iterator<E> iterator() {
+		// TODO Auto-generated method stub
+		int index=0;
+		
+		return new Iterator<E> () {
+			
+			private E element = data[index];
+			
+			@Override
+			public boolean hasNext() { // 다음 요소 존재시 true, 존재 안하면 false
+				// TODO Auto-generated method stub
+				if(index<size) {
+					return true; 
+				}
+				return false;
+			}
+			
+			@Override
+			public E next() { // 다음 요소 반환
+				// TODO Auto-generated method stub
+				element = data[index];
+				
+				return element;
+			}
+			
+		};
+		
+		
 	}
 }

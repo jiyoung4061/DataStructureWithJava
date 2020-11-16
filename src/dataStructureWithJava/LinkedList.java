@@ -27,17 +27,31 @@ public class LinkedList<E> implements List<E>{
 	public void add(int index, E element) {
 		// TODO Auto-generated method stub
 		checkBoundExclusive(index);
-		size++;
 		Node<E> newNode = new Node<E>(element);
-		
 		Node<E> last = head;
 		
 		for(int i = 0 ; i < index-1 ; i++) {
 			last = last.next;
 		}
-		Node<E> nextStart = last.next;
-		last.next = newNode;
-		newNode.next = nextStart;
+		
+//		// M1. 내 방법 => 첫번째 index, 마지막 index에 추가할 경우를 안함!!
+//		last.next = newNode;
+//		newNode.next = last.next;
+		
+		// M2. 선생님 방법
+		if(index == size) { // 마지막 index 추가할 경우!
+			add(element);
+			return;
+		}
+		if(index == 0) { // 맨앞에 추가할 경우
+			head = newNode;
+			newNode.next = last;
+		} else {
+			newNode.next = last.next;
+			last.next = newNode;
+		}
+		
+		size++;
 	}
 
 	@Override
@@ -56,21 +70,35 @@ public class LinkedList<E> implements List<E>{
 		// TODO Auto-generated method stub
 		checkBoundExclusive(index);
 		
-		Node<E> last = head;
-		
-		for(int i = 0 ; i< index ;i++) {
-			last = last.next; // for문 끝나면 last에는 index의 주소값갖고있음
-			System.out.println(last.next+"next:"+last.data);
+		// M2. 선생님 방법
+		E element;
+		if(index == 0) {
+			element = head.data;
+			head = head.next;
+		} else {
+			Node<E> last = head;
+			for(int i = 0 ; i < index-1 ;i++) {
+				last = last.next;
+			}
+			
+			element = last.next.data;
+			last.next = last.next.next;
 		}
-		
-		System.out.println(last.next.data+"asdf");
-		last.next = last.next.next;
-//		last.next; // remove할 노드 다음 주소
-		
-		
 		size--;
+		return element;
 		
-		return last.data;
+		
+//		// M1. 내가 한 방법 => 첫번째 요소 지우기가 없음. && 반환값 체크!
+//		Node<E> last = head;
+//		
+//		for(int i = 0 ; i< index-1 ;i++) {
+//			last = last.next; // for문 끝나면 last에는 index의 주소값갖고있음
+//		}
+//		last.next = last.next.next; // remove할 노드 다음 주소
+//		size--;
+//		
+//		return last.data;	
+		
 	}
 
 	@Override
