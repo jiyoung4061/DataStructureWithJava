@@ -4,9 +4,62 @@ public class Test1 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ArrayList<Integer> arr = new ArrayList();
+//		List<Integer> list = new ArrayList<Integer>();
+//		
+//		// 데이터 추가
+//		list.add( 1 );
+//		list.add( 2 );
+//		list.add( 3 );
+//		list.add( 4 );
+//		list.add( 5 );
+//		list.add( 6 );
+//		list.add( 7 );
+//		list.add(2, 25);
+//		list.remove(3);
+//				
+//		// 전체 데이터 순서대로 가져오기
+//		for( int i = 0; i < list.size(); i++ ) {
+//		    System.out.println( i + "번째 데이터 : " + list.get( i ) );
+//		}
+//
+//		// 전체 데이터 수 출력
+//		System.out.println( "현재 데이터 수:" + list.size() );
+//
+//		// 전체 데이터 삭제
+//		list.removeAll();
+//
+//		// 전체 데이터 수 출력
+//		System.out.println( "현재 데이터 수:" + list.size() );
+//				
+//		//예외 발생시키기
+//		try {
+//		     list.get( 0 );
+//		 } catch( IndexOutOfBoundsException e ) {
+//		    e.printStackTrace();
+//		}
 		
-		arr.get(100);
+		List<Integer> list = new LinkedList<Integer>();
+		
+		list.add(10);
+		list.add(20);
+		list.add(30);
+		list.add(40);
+		list.add(50);
+		
+		System.out.println("현재 데이터 수: "+ list.size());
+		
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(i+"번째 데이터:"+ list.get(i));
+		}
+		System.out.println();
+		
+		list.add(2, 25);
+		list.remove(2);
+		
+		System.out.println("현재 데이터 수: "+list.size());
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(i+"번째 데이터:"+ list.get(i));
+		}
 	}
 
 }
