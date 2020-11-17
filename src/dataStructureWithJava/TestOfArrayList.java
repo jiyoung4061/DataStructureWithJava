@@ -18,20 +18,8 @@ public class TestOfArrayList {
 		list.add( 7 );
 		list.add(2, 25);
 		list.remove(3);
-		
-		Iterator<Integer> it = list.iterator();
-		while(it.hasNext()) {
-			int i = it.next();
-			System.out.println(i);
-		}
-		
-		System.out.println();
-		
-		for(int i : list) {
-			System.out.println(i);
-		}
 				
-		// 전체 데이터 순서대로 가져오기
+//		// 전체 데이터 순서대로 가져오기
 //		for( int i = 0; i < list.size(); i++ ) {
 //		    System.out.println( i + "번째 데이터 : " + list.get( i ) );
 //		}
@@ -51,6 +39,19 @@ public class TestOfArrayList {
 //		 } catch( IndexOutOfBoundsException e ) {
 //		    e.printStackTrace();
 //		}
+		
+		//Iterator 사용하기
+		Iterator<Integer> it = list.iterator();
+		while(it.hasNext()) {
+			int i = it.next();
+			System.out.println(i);
+		}
+		
+		System.out.println();
+		
+		for(int i : list) {
+			System.out.println(i);
+		}
 		
 		
 	}

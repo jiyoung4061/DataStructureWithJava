@@ -1,6 +1,7 @@
 package dataStructureWithJava;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayList<E> implements List<E>{
 	private int size;
@@ -104,27 +105,26 @@ public class ArrayList<E> implements List<E>{
 	@Override
 	public Iterator<E> iterator() {
 		// TODO Auto-generated method stub
-		int index=0;
 		
 		return new Iterator<E> () {
 			
-			private E element = data[index];
+			private int pos = 0;
+			private int size = size();
 			
 			@Override
 			public boolean hasNext() { // 다음 요소 존재시 true, 존재 안하면 false
 				// TODO Auto-generated method stub
-				if(index<size) {
-					return true; 
-				}
-				return false;
+				return pos < size;
 			}
 			
 			@Override
 			public E next() { // 다음 요소 반환
 				// TODO Auto-generated method stub
-				element = data[index];
+				if(pos == size) {
+					throw new NoSuchElementException();
+				}
 				
-				return element;
+				return data[pos++];
 			}
 			
 		};
