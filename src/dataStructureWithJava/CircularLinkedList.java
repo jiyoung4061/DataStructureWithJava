@@ -13,33 +13,53 @@ public class CircularLinkedList<E> implements List<E> {
 		// TODO Auto-generated method stub
 		return new Iterator<E>() {
 
-			private Node<E> x = tail.next; // 첫번째 요소
-			private int count = 0;
+//			// 내방법
+//			private Node<E> x = tail.next; // 첫번째 요소
+//			private int count = 0;
+			
+			private Node<E> position = tail == null ? null : tail.next;
+			private boolean isFirst = true;
 			
 			@Override
 			public boolean hasNext() { // 마지막 요소일 경우 false, 아니면 true
 				// TODO Auto-generated method stub
-				if( count < size) { // true
-					count++;
-					return true;
-				} else { // false = 마지막요소를 가리키고 있는 경우
+				
+//				// 내방법 => 데이터가 없는경우도 테스트 해볼것!!
+//				if( count < size) { // true
+//					count++;
+//					return true;
+//				} else { // false = 마지막요소를 가리키고 있는 경우
+//					return false;
+//				}
+				
+				if(position == null) {
 					return false;
 				}
+				if(isFirst) {
+					isFirst = false;
+					return true;
+				}
 				
+				return (position != tail.next);
 			}
 
 			@Override
 			public E next() { // 다음 요소 반환
 				// TODO Auto-generated method stub
-				if (x == tail) {
-					E data = x.data;
-					return data;
-				}
-				E data = x.data;
-				x = x.next;
+//				// 내방법
+//				if (x == tail) {
+//					E data = x.data;
+//					return data;
+//				}
+//				E data = x.data;
+//				x = x.next;
+//				return data;
+				
+				// 선생님방법
+				E data = position.data;
+				position = position.next;
 				return data;
 			}
-
 		};
 	}
 
