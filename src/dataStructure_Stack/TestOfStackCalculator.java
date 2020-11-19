@@ -10,8 +10,8 @@ public class TestOfStackCalculator {
 		StackCalculator cal3 = new StackCalculator("2*3/(2+4)+1");
 		// 12+34/*567-++
 		System.out.println(cal.infixToPostfix());
-//		System.out.println(cal2.infixToPostfix());
-//		System.out.println(cal3.infixToPostfix());
+		System.out.println(cal2.infixToPostfix());
+		System.out.println(cal3.infixToPostfix());
 	}
 
 }

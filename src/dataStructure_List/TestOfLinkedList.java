@@ -22,25 +22,25 @@ public class TestOfLinkedList {
 		System.out.println();
 
 		list.add(2, 25);
-		list.remove(1);
+		list.removeAll();
 
 		System.out.println("현재 데이터 수: " + list.size());
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(i + "번째 데이터:" + list.get(i));
 		}
 
-		// Iterator 사용하기
-		Iterator<Integer> it = list.iterator();
-		while (it.hasNext()) {
-			int i = it.next();
-			System.out.println(i);
-		}
-
-		System.out.println();
-
-		for (int i : list) {
-			System.out.println(i);
-		}
+//		// Iterator 사용하기
+//		Iterator<Integer> it = list.iterator();
+//		while (it.hasNext()) {
+//			int i = it.next();
+//			System.out.println(i);
+//		}
+//
+//		System.out.println();
+//
+//		for (int i : list) {
+//			System.out.println(i);
+//		}
 	}
 
 }
