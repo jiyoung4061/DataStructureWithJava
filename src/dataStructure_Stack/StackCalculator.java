@@ -19,9 +19,9 @@ public class StackCalculator {
 				while (stack.peek() != '(') {
 					res += stack.pop();
 				}
-				stack.pop(); // ( pop해주기
-			} else if( arr[i] == '+' || arr[i] == '-' || arr[i] == '*' || arr[i]=='/') {				
-				if (!stack.empty() && (compareOfOperand(arr[i], stack.peek()) < 1) ) { //우선순위가 같거나 높은 연산자를 만났을 경우 => 연산자 모두..						
+				stack.pop(); 
+			} else if( arr[i] == '+' || arr[i] == '-' || arr[i] == '*' || arr[i]=='/') {
+				if (!stack.empty() && (compareOfOperand(arr[i], stack.peek()) < 1) ) {
 					while (!stack.empty() && stack.peek() != '(') {
 						res += stack.pop();
 					}
@@ -36,12 +36,12 @@ public class StackCalculator {
 		}
 		return res;
 	}
-	
+
 	public int compareOfOperand (char a, char b) {
 		// 연산자 a가 b보다 우선순위가 큰 경우 +1
 		// b가 더 큰경우 -1
 		// 같은 경우 == 0
-		int valOfReturn = 0; //0으로 초기값해줘야함!!!!!=> (괄호가 들어왔을 경우!
+		int valOfReturn = 0;
 		switch(a) {
 		case '+':
 		case '-':
