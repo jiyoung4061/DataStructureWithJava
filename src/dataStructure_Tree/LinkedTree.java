@@ -71,6 +71,36 @@ public class LinkedTree<E> {
 			traversalPreorder(node.right, result);
 		}
 	}
+	
+	public void makeExpressionTree(List<E> list) {
+		
+	}
+	
+	double evaluteExpressionTree(TreeNode<E> node) {
+	    double lvalue = evaluteExpressionTree( node.left );
+	    double rvalue = evaluteExpressionTree( node.right );
+	    char operand = (char)node.data;
+	    return getResult(lvalue, rvalue, operand);
+	}
+
+	public double getResult(double a, double b, char c) {
+		double result = 0;
+		switch (c) {
+		case '+':
+			result = a + b;
+			break;
+		case '-':
+			result = a - b;
+			break;
+		case '*':
+			result = a * b;
+			break;
+		case '/':
+			result = a / b;
+			break;
+		}
+		return result;
+	}
 
 	// innerclass로 트리노드 선언
 	public static class TreeNode<E> {

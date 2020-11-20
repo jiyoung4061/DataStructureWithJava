@@ -42,6 +42,9 @@ public class TestOfLinkedTree {
 		list.clear();
 		tree.traversalInorder( list );
 		System.out.println( Arrays.toString( list.toArray() ) );
+		
+		
+		
 
 	}
 
