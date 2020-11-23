@@ -47,13 +47,14 @@ public class TestOfLinkedTree {
 		
 		List<String> list = new ArrayList<String>();
 		
-		TreeCalculator cal = new TreeCalculator("7+4*2-1");
+		TreeCalculator<String> cal = new TreeCalculator<String>("7+4*2-1");
 		
 		System.out.println(cal.infixToPostfix());
 		System.out.println("====================================");
 		LinkedTree<String> tree = cal.makeExpressionTree();
 		tree.traversalPostorder(list); // list에 순회된 값 들어감.
 		System.out.println(Arrays.toString(list.toArray())); // 출력
+		
 		int result = cal.evaluateExpressionTree(tree.getRoot()); //
 		System.out.println("Result:"+result);
 		

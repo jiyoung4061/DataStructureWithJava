@@ -14,8 +14,8 @@ public class LinkedTree<E> {
 		root = new TreeNode<E>(data);
 	}
 	
-	public void setRoot(E root) {
-		this.root = new TreeNode<E>(root);
+	public void setRoot(TreeNode root) {
+		this.root = root;
 	}
 
 	public TreeNode<E> getRoot() {
@@ -89,9 +89,6 @@ public class LinkedTree<E> {
 			traversalPreorder(node.right, result);
 		}
 	}
-
-	
-	
 
 	// innerclass로 트리노드 선언
 	public static class TreeNode<E> {

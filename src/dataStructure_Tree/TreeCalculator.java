@@ -1,7 +1,5 @@
 package dataStructure_Tree;
 
-import java.util.List;
-
 import dataStructure_Stack.Stack;
 import dataStructure_Tree.LinkedTree.TreeNode;
 
@@ -69,34 +67,43 @@ public class TreeCalculator<E> {
 	}
 
 	public LinkedTree<String> makeExpressionTree() {
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-
-		for (int i = 0; i < res.length(); i++) {
-			TreeNode<Character> node = new TreeNode<Character>(res.charAt(i));
-			if (node.getNode() >= '0' && node.getNode() <= '9') { // 숫자
+		Stack<LinkedTree.TreeNode<String>> stack = new Stack<LinkedTree.TreeNode<String>>();
+		char[] arr = res.toCharArray();
+		
+		for (int i = 0; i < arr.length; i++) {
+			TreeNode<String> node = new TreeNode<String>(String.valueOf(arr[i]));
+//			if (node.getNode().equals("+") || node.getNode().equals("-") || node.getNode().equals("/")|| node.getNode().equals("*")){ //연산자
+//				tree.setRoot(node);
+//				tree.insertRight(node, stack.pop());
+//				tree.insertLeft(node, stack.pop());
+//				stack.push(tree.getRoot());
+//			} else { // 숫자
+//				stack.push(node);
+//			}
+			try {
+				Integer.valueOf(node.getNode());
 				stack.push(node);
-			} else { // 연산자
-				tree.setRoot(node.getNode().toString());
-				tree.insertRight(tree.getRoot(), stack.pop());
-				tree.insertLeft(tree.getRoot(), stack.pop());
+			} catch(NumberFormatException e){
+				tree.setRoot(node);
+				tree.insertRight(node, stack.pop());
+				tree.insertLeft(node, stack.pop());
 				stack.push(tree.getRoot());
 			}
 		}
 		return tree;
 	}
 
-	int evaluateExpressionTree(TreeNode<E> node) {
+	int evaluateExpressionTree(LinkedTree.TreeNode<E> node) {
 		int lvalue = 0;
 		int rvalue = 0;
 		String operand = "";
 		if(node.getLeftNode() != null) { // 단말노드가 아닌 경우=연산자!
 			lvalue = evaluateExpressionTree(node.getLeftNode());
 			rvalue = evaluateExpressionTree(node.getRightNode());
-			operand = String.valueOf(node.getNode());
+			operand = (String) node.getNode();
 			return getResult(lvalue, rvalue, operand);
 		} else {
-			return Character.getNumericValue((char) node.getNode());
-//			return Integer.parseInt(String.valueOf(node.getNode()));
+			return Integer.parseInt(String.valueOf(node.getNode()));
 		}
 	}
 
