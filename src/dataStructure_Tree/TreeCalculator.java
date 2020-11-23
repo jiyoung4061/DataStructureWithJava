@@ -28,10 +28,8 @@ public class TreeCalculator<E> {
 			} else if (arr[i] >= '0' && arr[i] <= '9') {
 				res += arr[i];
 			} else {
-				if (!stack.empty() && (compareOfOperand(arr[i], stack.peek()) < 1)) {
-					while (!stack.empty() && stack.peek() != '(') {
-						res += stack.pop();
-					}
+				while (!stack.empty() && stack.peek() != '(' && compareOfOperand(arr[i], stack.peek()) < 1) {
+					res += stack.pop();
 				}
 				stack.push(arr[i]);
 			}
@@ -69,25 +67,17 @@ public class TreeCalculator<E> {
 	public LinkedTree<String> makeExpressionTree() {
 		Stack<LinkedTree.TreeNode<String>> stack = new Stack<LinkedTree.TreeNode<String>>();
 		char[] arr = res.toCharArray();
-		
+
 		for (int i = 0; i < arr.length; i++) {
 			TreeNode<String> node = new TreeNode<String>(String.valueOf(arr[i]));
-//			if (node.getNode().equals("+") || node.getNode().equals("-") || node.getNode().equals("/")|| node.getNode().equals("*")){ //연산자
-//				tree.setRoot(node);
-//				tree.insertRight(node, stack.pop());
-//				tree.insertLeft(node, stack.pop());
-//				stack.push(tree.getRoot());
-//			} else { // 숫자
-//				stack.push(node);
-//			}
-			try {
-				Integer.valueOf(node.getNode());
-				stack.push(node);
-			} catch(NumberFormatException e){
+			if (node.getNode().equals("+") || node.getNode().equals("-") || node.getNode().equals("/")
+					|| node.getNode().equals("*")) { // 연산자
 				tree.setRoot(node);
 				tree.insertRight(node, stack.pop());
 				tree.insertLeft(node, stack.pop());
 				stack.push(tree.getRoot());
+			} else { // 숫자
+				stack.push(node);
 			}
 		}
 		return tree;
@@ -97,7 +87,7 @@ public class TreeCalculator<E> {
 		int lvalue = 0;
 		int rvalue = 0;
 		String operand = "";
-		if(node.getLeftNode() != null) { // 단말노드가 아닌 경우=연산자!
+		if (node.getLeftNode() != null) { // 단말노드가 아닌 경우=연산자!
 			lvalue = evaluateExpressionTree(node.getLeftNode());
 			rvalue = evaluateExpressionTree(node.getRightNode());
 			operand = (String) node.getNode();
