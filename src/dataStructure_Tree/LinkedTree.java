@@ -5,9 +5,17 @@ import java.util.List;
 public class LinkedTree<E> {
 
 	private TreeNode<E> root; // root노드 저장할 변수
+	
+	public LinkedTree() {
+		
+	}
 
 	public LinkedTree(E data) { // 생성자 함수
 		root = new TreeNode<E>(data);
+	}
+	
+	public void setRoot(E root) {
+		this.root = new TreeNode<E>(root);
 	}
 
 	public TreeNode<E> getRoot() {
@@ -24,6 +32,16 @@ public class LinkedTree<E> {
 		TreeNode<E> rightNode = new TreeNode<E>(data);
 		node.right = rightNode;
 		return rightNode;
+	}
+	
+	public TreeNode<E> insertLeft(TreeNode<E> node, TreeNode<E> left) {
+		node.left = left;
+		return left;
+	}
+
+	public TreeNode<E> insertRight(TreeNode<E> node, TreeNode<E> right) {
+		node.right = right;
+		return right;
 	}
 
 	public void traversalPostorder(List<E> result) {
@@ -71,36 +89,9 @@ public class LinkedTree<E> {
 			traversalPreorder(node.right, result);
 		}
 	}
-	
-	public void makeExpressionTree(List<E> list) {
-		
-	}
-	
-	double evaluteExpressionTree(TreeNode<E> node) {
-	    double lvalue = evaluteExpressionTree( node.left );
-	    double rvalue = evaluteExpressionTree( node.right );
-	    char operand = (char)node.data;
-	    return getResult(lvalue, rvalue, operand);
-	}
 
-	public double getResult(double a, double b, char c) {
-		double result = 0;
-		switch (c) {
-		case '+':
-			result = a + b;
-			break;
-		case '-':
-			result = a - b;
-			break;
-		case '*':
-			result = a * b;
-			break;
-		case '/':
-			result = a / b;
-			break;
-		}
-		return result;
-	}
+	
+	
 
 	// innerclass로 트리노드 선언
 	public static class TreeNode<E> {
@@ -113,5 +104,18 @@ public class LinkedTree<E> {
 			this.left = null;
 			this.right = null;
 		}
+		
+		public E getNode() {
+			return data;
+		}
+		
+		public TreeNode<E> getLeftNode() {
+			return left;
+		}
+		
+		public TreeNode<E> getRightNode(){
+			return right;
+		}
+		
 	}
 }

@@ -8,42 +8,54 @@ public class TestOfLinkedTree {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		LinkedTree<String> tree = new LinkedTree<String>("A");
+		
+//		//
+//		LinkedTree<String> tree = new LinkedTree<String>("A");
+//		List<String> list = new ArrayList<String>();
+		
+//		LinkedTree.TreeNode<String> nodeA = tree.getRoot();
+//		LinkedTree.TreeNode<String> nodeB = tree.insertLeft(nodeA, "B");
+//		LinkedTree.TreeNode<String> nodeC = tree.insertRight( nodeA, "C" );
+//		
+//		LinkedTree.TreeNode<String> nodeD = tree.insertLeft( nodeB, "D" );
+//		LinkedTree.TreeNode<String> nodeE = tree.insertRight( nodeB, "E" );
+//				
+//		LinkedTree.TreeNode<String> nodeF = tree.insertLeft( nodeC, "F" );
+//		LinkedTree.TreeNode<String> nodeG = tree.insertRight( nodeC, "G" );
+//		
+//		//단말 노드라서 따로 node생성 X
+//		tree.insertLeft( nodeD, "H" );
+//		tree.insertRight( nodeD, "I" );
+//				
+//		tree.insertLeft( nodeE, "J" );
+//
+//		tree.insertRight( nodeF, "K" );
+//
+//		tree.insertLeft( nodeG, "L" );
+//		tree.insertRight( nodeG, "M" );
+//
+//		tree.traversalPostorder(list);
+//		System.out.println(Arrays.toString(list.toArray()));
+//		
+//		list.clear();
+//		tree.traversalPreorder( list );
+//		System.out.println( Arrays.toString( list.toArray() ) );
+//
+//		list.clear();
+//		tree.traversalInorder( list );
+//		System.out.println( Arrays.toString( list.toArray() ) );
+		
 		List<String> list = new ArrayList<String>();
 		
-		LinkedTree.TreeNode<String> nodeA = tree.getRoot();
-		LinkedTree.TreeNode<String> nodeB = tree.insertLeft(nodeA, "B");
-		LinkedTree.TreeNode<String> nodeC = tree.insertRight( nodeA, "C" );
+		TreeCalculator cal = new TreeCalculator("7+4*2-1");
 		
-		LinkedTree.TreeNode<String> nodeD = tree.insertLeft( nodeB, "D" );
-		LinkedTree.TreeNode<String> nodeE = tree.insertRight( nodeB, "E" );
-				
-		LinkedTree.TreeNode<String> nodeF = tree.insertLeft( nodeC, "F" );
-		LinkedTree.TreeNode<String> nodeG = tree.insertRight( nodeC, "G" );
-		
-		//단말 노드라서 따로 node생성 X
-		tree.insertLeft( nodeD, "H" );
-		tree.insertRight( nodeD, "I" );
-				
-		tree.insertLeft( nodeE, "J" );
-
-		tree.insertRight( nodeF, "K" );
-
-		tree.insertLeft( nodeG, "L" );
-		tree.insertRight( nodeG, "M" );
-
-		tree.traversalPostorder(list);
-		System.out.println(Arrays.toString(list.toArray()));
-		
-		list.clear();
-		tree.traversalPreorder( list );
-		System.out.println( Arrays.toString( list.toArray() ) );
-
-		list.clear();
-		tree.traversalInorder( list );
-		System.out.println( Arrays.toString( list.toArray() ) );
-		
-		
+		System.out.println(cal.infixToPostfix());
+		System.out.println("====================================");
+		LinkedTree<String> tree = cal.makeExpressionTree();
+		tree.traversalPostorder(list); // list에 순회된 값 들어감.
+		System.out.println(Arrays.toString(list.toArray())); // 출력
+		int result = cal.evaluateExpressionTree(tree.getRoot()); //
+		System.out.println("Result:"+result);
 		
 
 	}
