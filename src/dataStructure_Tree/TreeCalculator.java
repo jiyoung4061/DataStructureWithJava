@@ -41,10 +41,7 @@ public class TreeCalculator<E> {
 	}
 
 	public int compareOfOperand(char a, char b) {
-		// 연산자 a가 b보다 우선순위가 큰 경우 +1
-		// b가 더 큰경우 -1
-		// 같은 경우 == 0
-		int valOfReturn = 0; // 0으로 초기값해줘야함!!!!!=> (괄호가 들어왔을 경우!
+		int valOfReturn = 0;
 		switch (a) {
 		case '+':
 		case '-':
