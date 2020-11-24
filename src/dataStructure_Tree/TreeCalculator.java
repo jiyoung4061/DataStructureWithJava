@@ -1,7 +1,6 @@
 package dataStructure_Tree;
 
 import dataStructure_Stack.Stack;
-import dataStructure_Tree.LinkedTree.TreeNode;
 
 public class TreeCalculator<E> {
 	private String infixExpression;
@@ -66,7 +65,7 @@ public class TreeCalculator<E> {
 		char[] arr = res.toCharArray();
 
 		for (int i = 0; i < arr.length; i++) {
-			TreeNode<String> node = new TreeNode<String>(String.valueOf(arr[i]));
+			LinkedTree.TreeNode<String> node = new LinkedTree.TreeNode<String>(String.valueOf(arr[i]));
 			if (node.getNode().equals("+") || node.getNode().equals("-") || node.getNode().equals("/")
 					|| node.getNode().equals("*")) { // ¿¬»êÀÚ
 				tree.setRoot(node);

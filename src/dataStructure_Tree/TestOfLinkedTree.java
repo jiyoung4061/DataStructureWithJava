@@ -50,8 +50,8 @@ public class TestOfLinkedTree {
 //		TreeCalculator<String> cal = new TreeCalculator<String>("7+4*2-1");
 //		TreeCalculator<String> cal = new TreeCalculator<String>("5+2-4+3*7+1*8/4-3");
 //		TreeCalculator<String> cal = new TreeCalculator<String>("4*2+7-1+4+6*6");
-		TreeCalculator<String> cal = new TreeCalculator<String>("1+1+1*9*9*4");
-		// 
+		TreeCalculator<String> cal = new TreeCalculator<String>("1+1+1*9*1*4");
+
 		
 		System.out.println(cal.infixToPostfix());
 		System.out.println("====================================");
